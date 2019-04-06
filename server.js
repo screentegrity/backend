@@ -44,7 +44,7 @@ const apolloServer = new ApolloServer({
 //   );
 // });
 
-apolloServer.listen(PORT).then(({ url, subscriptionsUrl }) => {
+apolloServer.listen({port:PORT}).then(({ url, subscriptionsUrl }) => {
   console.log(`🚀 Server ready at ${url}`);
   console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
 });
