@@ -7,8 +7,13 @@ type Mutation {
   createSomething(data1: String!, data2: String!): Something!
 }
 
+type Subscription {
+  somethingAdded: Something!
+}
+
 type Something {
   id: ID!,
   data1: String!,
   data2: String!
 }
+
