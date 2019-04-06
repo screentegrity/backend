@@ -15,7 +15,7 @@ const something = {
           reject(err)
           return
         }
-        resolve( query.sql )
+        resolve( {...data, id: res.insertId} )
       })  
     })
     // });

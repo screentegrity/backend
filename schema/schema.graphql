@@ -4,5 +4,11 @@ type Query {
 }
 
 type Mutation {
-  createSomething(data1: String!, data2: String!): String!
+  createSomething(data1: String!, data2: String!): Something!
+}
+
+type Something {
+  id: ID!,
+  data1: String!,
+  data2: String!
 }
