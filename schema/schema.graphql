@@ -1,4 +1,8 @@
-  type Query {
-    "A simple type for getting started!"
-    hello: String
-  }
+type Query {
+  "A simple type for getting started!"
+  hello: String
+}
+
+type Mutation {
+  createSomething(data1: String!, data2: String!): String!
+}

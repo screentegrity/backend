@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS something_db;
+CREATE DATABASE something_db;
+USE something_db;
+
+CREATE TABLE something (
+  id INT NOT NULL AUTO_INCREMENT,
+  data1 VARCHAR(255) NOT NULL,
+  data2 VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
