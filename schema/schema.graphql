@@ -1,7 +1,8 @@
 type Query {
   "A simple type for getting started!"
   hello: String
-  candidates(review_status: ReviewStatus): [Candidate!]!
+  candidates(review_status: ReviewStatus!): [Candidate!]!
+  getUnscoredAnswers( candidate_id: ID! ): [CandidateAnswer]
 }
 
 type Mutation {
@@ -28,8 +29,26 @@ type Candidate {
   time_posted: String!
 }
 
+type CandidateAnswer {
+  id: ID!,
+  candidate_id: ID!,
+  question_id: ID!,
+  user_answer: String!,
+  question: String!,
+  max_points: Int!,
+  correct_answer: CorrectAnswer!
+}
+
 enum ReviewStatus {
   NEW
   PENDING
   COMPLETED
+}
+
+enum CorrectAnswer {
+  NA
+  A
+  B
+  C
+  D
 }

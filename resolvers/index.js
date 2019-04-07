@@ -2,6 +2,7 @@ const { PubSub } = require("apollo-server");
 
 const something = require('../models/something')
 const candidate = require('../models/candidates')
+const candidates_answers = require('../models/candidates_answers')
 
 const pubsub = new PubSub();
 
@@ -12,6 +13,10 @@ const resolvers = {
     hello: () => 'world',
     candidates: (root, args, context) => {
       const result = candidate.all(args)
+      return result
+    },
+    getUnscoredAnswers: (root, args, context) => {
+      const result = candidates_answers.getUnscoredAnswers(args)
       return result
     }
   },
