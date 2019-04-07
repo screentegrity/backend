@@ -8,7 +8,7 @@ const candidates = {
       const query = connection.query(`SELECT id, candidate_name, picture_url, time_posted, review_status FROM ${TABLE} WHERE review_status=?`, data.review_status, (err,res) => {
         if (err)
           return reject(err)
-        console.log(data, query.sql, res)
+        // console.log(data, query.sql, res)
         resolve( res )
       })
     })
@@ -30,10 +30,24 @@ const candidates = {
     })
     // });
   },
-  update: function(objColVals, condition, cb) {
-    // orm.update(table, objColVals, condition, function(res) {
-      cb(res);
-    // });
+  update: function(data) {
+    return new Promise( function(resolve, reject) {
+      let query = connection.query(`UPDATE ${TABLE} SET review_status = ? WHERE id = ? and review_status = ?`, [data.review_status, data.id, data.previous_status], (err,res) => {
+        if (err)
+          return reject(err)
+        // console.log(query.sql, res)
+        if (res.changedRows > 0) {
+          query = connection.query(`SELECT * FROM ${TABLE} WHERE id=?`, [data.id], (err, res) => {
+            // console.log(query.sql)
+            if (err)
+              return reject(err)
+            resolve( res[0] )          
+          })
+        } else {
+          resolve( null )
+        }
+      })
+    })
   }
 };
 

@@ -10,20 +10,27 @@ const SOMETHING_ADDED = 'SOMETHING_ADDED';
 const resolvers = {
   Query: {
     hello: () => 'world',
-    candidates: async (root, args, context) => {
-      const result = await candidate.all(args)
+    candidates: (root, args, context) => {
+      const result = candidate.all(args)
       return result
     }
   },
   Mutation: {
-    createSomething: async (root, args, context) => {
-      
-      const result = await something.create(args)
+    createSomething: (root, args, context) => {
+      const result = something.create(args)
       pubsub.publish(SOMETHING_ADDED, {somethingAdded: result})
       return result
     },
-    addCandidate: async (root, args, context) => {
-      const result = await candidate.create(args)
+    addCandidate: (root, args, context) => {
+      const result = candidate.create(args)
+      return result
+    },
+    setCandidateStatusPending: (root, args, context) => {
+      const result = candidate.update({...args, review_status: 'PENDING', previous_status: 'NEW'})
+      return result
+    },
+    setCandidateStatusCompleted: (root, args, context) => {
+      const result = candidate.update({...args, review_status: 'COMPLETED', previous_status: 'PENDING'})
       return result
     },
   },
