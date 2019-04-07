@@ -25,6 +25,7 @@ const apolloServer = new ApolloServer({
       return { token };
     }
   },
+  introspection: true,
 });
 
 // apolloServer.applyMiddleware({ app });
