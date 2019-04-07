@@ -1,10 +1,12 @@
 type Query {
   "A simple type for getting started!"
   hello: String
+  candidates(review_status: ReviewStatus): [Candidate!]!
 }
 
 type Mutation {
   createSomething(data1: String!, data2: String!): Something!
+  addCandidate(candidate_name: String!, picture_url: String!): Candidate! 
 }
 
 type Subscription {
@@ -17,3 +19,15 @@ type Something {
   data2: String!
 }
 
+type Candidate {
+  id: ID!,
+  candidate_name: String!,
+  picture_url: String!,
+  time_posted: String!
+}
+
+enum ReviewStatus {
+  NEW
+  PENDING
+  COMPLETED
+}

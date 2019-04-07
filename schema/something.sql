@@ -8,3 +8,28 @@ CREATE TABLE something (
   data2 VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE candidates (
+  id INT NOT NULL AUTO_INCREMENT,
+  candidate_name VARCHAR(255) NOT NULL,
+  picture_url VARCHAR(255) NOT NULL,
+  time_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  review_status ENUM('NEW', 'PENDING', 'COMPLETED') DEFAULT 'NEW',
+  PRIMARY KEY (id)
+)
+
+CREATE TABLE doctors (
+  id INT NOT NULL AUTO_INCREMENT,
+  data1 VARCHAR(255) NOT NULL,
+  data2 VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+) 
+
+CREATE TABLE appointments (
+  id INT NOT NULL AUTO_INCREMENT,
+  data1 VARCHAR(255) NOT NULL,
+  data2 VARCHAR(255) NOT NULL,
+  candidate_id INT,
+  doctor_id INT,
+  PRIMARY KEY (id)
+)
